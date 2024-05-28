@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+    <title>Busca Cep</title>
+</head>
+<body>
+
+    <div class="colunas">
+        <div id="formCep">
+            
+        
+            <h1>Consulte seu CEP</h1>
+            <input type="text" name="cep" id="cep" placeholder="digite seu cep" maxlength="8" minlength="8" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');"/>
+            <!-- oninput retirado desse site, entendi porra nenhuma mas funcionou (pedir explicação depois pro professor) https://horadecodar.com.br/como-fazer-um-input-text-aceitar-somente-numeros/ -->
+            <label>pressione enter</label>
+
+        
+            
+        <div id="resultado">
+
+            <label>CEP:</label>
+            <input type="text" name="cep" id="icep" readonly>
+
+            <label>LOGRADOURO:</label>
+            <input type="text" name="logradouro" id="ilog" readonly>
+
+            <label>COMPLEMENTO:</label>
+            <input type="text" name="complemente" id="icomp" readonly>
+
+            <label>BAIRRO:</label>
+            <input type="text" name="bairro" id="ibairro" readonly>
+
+            <label>CIDADE:</label>
+            <input type="text" name="cidade" id="icidade" readonly>
+        
+            <label>UF:</label>
+            <input type="text" name="UF" id="iuf" readonly>
+
+            <label>IBGE:</label>
+            <input type="text" name="IBGE" id="iibge" readonly>
+
+            <label>DDD:</label>
+            <input type="text" name="DDD" id="iddd" readonly>
+
+            <label>GIA:</label>
+            <input type="text" name="GIA" id="igia" readonly>
+
+            <label>SIAFI:</label>
+            <input type="text" name="SIAFI" id="isiafi" readonly>
+
+       
+
+        <div>
+            <button onclick="salvar()" id="salvar">Salvar</button>
+        </div>
+   
+    </div>
+
+    <div id="tabela">
+        <table border="1">
+            <thead>
+                <th>CEP</th>
+                <th>LOGRADOURO</th>
+                <th>COMPLEMENTO</th>
+                <th>BAIRRO</th>
+                <th>CIDADE</th>
+                <th>UF</th>
+                <th>IBGE</th>
+                <th>DDD</th>
+                <th>GIA</th>
+                <th>SIAFI</th>
+            </thead>
+            <tbody id="tabelaCep">
+
+            </tbody>
+        </table>
+    </div>
+  
+    <script src="app.js"></script>    
+</body>
+</html>

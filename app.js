@@ -64,11 +64,14 @@ function salvarNaTabela(data) {
            <td>${data.ddd || ''}</td>
            <td>${data.gia || ''}</td>
            <td>${data.siafi || ''}</td>
+           <td><button onclick="buscaTempo(this)">Clima</button></td>
            <td><button onclick="excluirLinha(this)">Excluir</button></td>
        </tr>`;
    tabela.insertAdjacentHTML('beforeend', novaLinha);
    //excluirLocalStorage(linha);
 }
+
+
 
 function excluirLinha(botao){
    const linha = botao.closest('tr');
@@ -117,6 +120,7 @@ function salvar() {
            <td>${enderecoAtual.ddd || ''}</td>
            <td>${enderecoAtual.gia || ''}</td>
            <td>${enderecoAtual.siafi || ''}</td>
+           <td><button onclick="buscaTempo(this)">Clima</button></td>
            <td><button onclick="excluirLinha(this)" id="btn">Excluir</button></td>
        </tr>`;
    tabela.insertAdjacentHTML('beforeend', novaLinha);
@@ -178,5 +182,40 @@ function apagar() {
    
 }
 
+
+function buscaTempo(botao){
+   const linha = botao.closest('tr');
+   const chave = '1e366df981b29d296e1f4f09b52508d6';
+   const city = linha.cells[4].textContent;
+   fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${chave}&units=metric&lang=pt_b`).
+   then(response => response.json()).
+   then(json=>{
+      infoClima(json, city);   
+   console.log(json);
+}).catch(error => console.log(error))
+}
+
+function infoClima(json, city){
+   const caixaClima = document.querySelector('#mostraClima');
+   caixaClima.showModal();
+
+   const cidadeClima = document.querySelector('#cidadeClima');
+   cidadeClima.value = `${city}`;
+
+   const temp = document.querySelector('#itemp');
+   temp.value = `${json.main.temp} °C`;
+
+   const sens = document.querySelector('#isens');
+   sens.value = `${json.main.feels_like} °C`;
+
+   const humi = document.querySelector('#ihum');
+   humi.value = `${json.main.humidity} %`;
+
+   const tempMax = document.querySelector('#imax');
+   tempMax.value = `${json.main.temp_max} °C`;
+
+   const tempMin = document.querySelector('#imin');
+   tempMin.value = `${json.main.temp_min} °C`;
+}
 
 gerenciarLocalStorage(null, 'carregar');

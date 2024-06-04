@@ -85,3 +85,29 @@ td {
 th {
     background-color: #f2f2f2;
 }
+
+dialog{
+    position: fixed;
+    top: 150px;
+    left: 800px;
+    width: 25%;
+    height: 70%;
+    border-radius:20px ;
+    text-align: center;
+    background-color:#B0C6D2;
+    font-size: 20px;
+}
+
+#mostraClima input{
+    text-align: center;
+    border-style:hidden;
+    background-color: #B0C6D2;
+    font-size: 25px;
+    color: black
+}
+
+#mostraClima p{
+    position: relative;
+    left: -35%;
+    font-size: 18px;
+}
